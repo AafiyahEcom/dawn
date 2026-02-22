@@ -98,6 +98,12 @@
           {%- endif -%}
         </div>
       {%- endform -%}
+
+      {%- comment -%} Bare & Bloom — save for later link ─────────────────── {%- endcomment -%}
+      <a href="#" class="bb-product__wishlist-link" aria-label="{{ 'products.product.save_for_later' | t | default: 'Save for later' }}">
+        Save for later
+      </a>
+
     </product-form>
   {%- else -%}
     <div class="product-form">

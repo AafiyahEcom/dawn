@@ -6,6 +6,26 @@
   --focused-base-outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
+
+  /* Bare & Bloom — brand colors */
+  --bb-blush: #F2E8E4;
+  --bb-terracotta: #C4704F;
+  --bb-sage: #8A9E8C;
+  --bb-charcoal: #2C2C2C;
+  --bb-cream: #FDFAF8;
+
+  /* Bare & Bloom — typography */
+  --bb-font-heading: 'Cormorant Garamond', Georgia, serif;
+  --bb-font-body: 'Jost', sans-serif;
+
+  /* Override Dawn's dynamic font vars so brand fonts are always applied */
+  --font-heading-family: var(--bb-font-heading);
+  --font-body-family: var(--bb-font-body);
+  --font-body-weight: 400;
+  --font-body-weight-bold: 600;
+  --font-heading-weight: 400;
+  --font-heading-style: normal;
+  --font-body-style: normal;
 }
 
 .product-card-wrapper .card,
@@ -3594,4 +3614,903 @@ details-disclosure > details {
   100% {
     transform: translateX(100%) scaleX(0);
   }
+}
+
+/* ============================================================
+   Bare & Bloom — Global Typography
+   Cormorant Garamond (headings) · Jost (body / UI)
+   ============================================================ */
+
+/* ---- Heading shared traits --------------------------------- */
+h1, h2, h3, h4, h5, h6,
+.h0, .h1, .h2, .h3, .h4, .h5, .h6,
+.hxl, .hxxl {
+  font-family: var(--bb-font-heading);
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Display / hero — used in hero banners, featured sections */
+.hxxl {
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hxl {
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.h0 {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+/* h1 — page & collection titles */
+h1, .h1 {
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+/* h2 — section headings */
+h2, .h2 {
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+
+/* h3 — subsection headings */
+h3, .h3 {
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+/* h4 — card titles, component headings */
+h4, .h4 {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+
+/* h5 — small component headings */
+h5, .h5 {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+
+/* h6 — eyebrow / label treatment
+   Dawn does not assign font-family here, so we set it explicitly */
+h6, .h6 {
+  font-family: var(--bb-font-heading);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+/* ---- Body text --------------------------------------------- */
+body {
+  font-family: var(--bb-font-body);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Rich-text areas: product descriptions, blog posts, pages */
+.rte {
+  font-family: var(--bb-font-body);
+  letter-spacing: 0.02em;
+  line-height: 1.75;
+}
+
+/* ---- Buttons ----------------------------------------------- */
+.button,
+.shopify-challenge__button,
+.customer button,
+button.shopify-payment-button__button--unbranded {
+  font-family: var(--bb-font-body);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ---- Navigation -------------------------------------------- */
+.header__menu-item,
+.header__menu-item span {
+  font-family: var(--bb-font-body);
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+/* ============================================================
+   Bare & Bloom — Header
+   ============================================================ */
+
+/* --- Background & hairline separator ----------------------- */
+.header-wrapper {
+  background-color: var(--bb-cream);
+  border-bottom: 1px solid rgba(44, 44, 44, 0.07);
+}
+
+/* Unify Dawn's optional separator class with our hairline */
+.header-wrapper--border-bottom {
+  border-bottom: 1px solid rgba(44, 44, 44, 0.07);
+}
+
+/* Subtle elevation shadow once the header is in sticky mode */
+.shopify-section-header-sticky .header-wrapper {
+  box-shadow: 0 2px 20px rgba(44, 44, 44, 0.06);
+  border-bottom-color: transparent;
+}
+
+/* --- Text logo (fallback when no image is uploaded) --------- */
+.header__heading-link .h2 {
+  color: var(--bb-charcoal);
+  font-family: var(--bb-font-heading);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.header__heading-link:hover .h2 {
+  color: var(--bb-terracotta);
+}
+
+/* --- Desktop navigation links ------------------------------ */
+.header__menu-item {
+  color: var(--bb-charcoal);
+  transition: color var(--duration-default) ease;
+}
+
+.header__menu-item:hover {
+  color: var(--bb-terracotta);
+}
+
+/* Remove Dawn's underline on hover — colour change alone is cleaner */
+.header__menu-item:hover span {
+  text-decoration: none;
+}
+
+/* Active page link: thin terracotta underline instead of full underline */
+.header__active-menu-item {
+  color: var(--bb-charcoal);
+  text-decoration: underline;
+  text-decoration-color: var(--bb-terracotta);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.4rem;
+}
+
+.header__menu-item:hover .header__active-menu-item {
+  color: var(--bb-terracotta);
+  text-decoration-color: var(--bb-terracotta);
+}
+
+/* --- Header icons (search, account, cart, hamburger) -------- */
+.header__icon {
+  color: var(--bb-charcoal);
+}
+
+/* Replace Dawn's scale-up hover with a soft opacity fade */
+.header__icon:hover .icon,
+.modal__close-button:hover .icon {
+  transform: none;
+  opacity: 0.55;
+  transition: opacity var(--duration-default) ease;
+}
+
+/* Dropdown backdrop: softer than Dawn's 50% black */
+.header__icon--menu[aria-expanded='true']::before {
+  background: rgba(44, 44, 44, 0.25);
+}
+
+/* --- Cart count badge --------------------------------------- */
+.cart-count-bubble {
+  background-color: var(--bb-terracotta);
+  color: var(--bb-cream);
+  font-family: var(--bb-font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* --- Mobile menu drawer ------------------------------------ */
+.menu-drawer {
+  background-color: var(--bb-cream);
+}
+
+/* Soften the drawer backdrop overlay */
+.js menu-drawer > details[open] > summary::before {
+  background: rgba(44, 44, 44, 0.25);
+}
+
+.menu-drawer__menu-item {
+  font-family: var(--bb-font-body);
+  font-size: 1.6rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--bb-charcoal);
+}
+
+.menu-drawer__menu-item--active,
+.menu-drawer__menu-item:hover,
+.menu-drawer__close-button:hover {
+  color: var(--bb-terracotta);
+  background-color: transparent;
+}
+
+.menu-drawer__menu-item--active:hover {
+  background-color: transparent;
+}
+
+.menu-drawer__close-button {
+  color: var(--bb-charcoal);
+  font-family: var(--bb-font-body);
+  font-size: 1.3rem;
+  letter-spacing: 0.06em;
+}
+
+/* Subtle divider above drawer utility links (social, account) */
+.menu-drawer__utility-links {
+  background-color: transparent;
+  border-top: 1px solid rgba(44, 44, 44, 0.07);
+}
+
+/* ============================================================
+   Bare & Bloom — Featured Collection & Product Cards
+   ============================================================ */
+
+/* ---- Section heading --------------------------------------- */
+/* The h2.title already gets Cormorant Garamond from our global
+   heading styles. Here we add centering and a refined tracking. */
+.collection__title .title {
+  text-align: center;
+  letter-spacing: -0.01em;
+  color: var(--bb-charcoal);
+}
+
+.collection__title .collection__description {
+  text-align: center;
+  color: rgba(44, 44, 44, 0.6);
+}
+
+/* "View all" link in the title row */
+.collection__title .link-with-icon {
+  font-family: var(--bb-font-body);
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bb-charcoal);
+  text-decoration: none;
+}
+
+.collection__title .link-with-icon:hover {
+  color: var(--bb-terracotta);
+}
+
+/* ---- Cards: zero out Dawn's border & shadow CSS vars ------- */
+/* These vars drive the ::before / ::after pseudo-element borders.
+   Overriding them here removes borders without touching any markup. */
+.product-card-wrapper .card {
+  --border-width: 0px;
+  --border-opacity: 0;
+  --shadow-opacity: 0;
+  --shadow-visible: 0;
+}
+
+/* ---- Card: cream background + hover lift ------------------- */
+/* --color-background is the R,G,B token Dawn's color-scheme
+   system uses for rgb(var(--color-background)). Setting it here
+   means card inners and all Dawn background references go cream. */
+.product-card-wrapper {
+  --color-background: 253, 250, 248;    /* --bb-cream as R,G,B  */
+  --color-secondary-button: 196, 112, 79;       /* terracotta   */
+  --color-secondary-button-text: 253, 250, 248; /* cream        */
+  transition: box-shadow 380ms ease;
+}
+
+.product-card-wrapper:hover {
+  box-shadow: 0 8px 40px rgba(44, 44, 44, 0.09);
+}
+
+/* ---- Image zoom: extend the easing Dawn already provides --- */
+/* Dawn applies scale(1.03) at ≥990px. We widen the scope to
+   all screens and upgrade from 'ease' to a smooth ease-out curve. */
+@media (prefers-reduced-motion: no-preference) {
+  .product-card-wrapper .media.media--hover-effect > img {
+    transition: transform 650ms cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  }
+}
+
+/* ---- Product title ----------------------------------------- */
+/* .card__heading already carries .h5 which maps to Cormorant
+   Garamond from our type scale. We reinforce and pin the color. */
+.product-card-wrapper .card__heading {
+  font-family: var(--bb-font-heading);
+  color: var(--bb-charcoal);
+}
+
+/* Suppress the underline Dawn adds on .underline-links-hover:hover */
+.product-card-wrapper.underline-links-hover:hover .card__heading a {
+  text-decoration: none;
+  color: var(--bb-charcoal);
+}
+
+/* ---- Product price ----------------------------------------- */
+/* Specificity (0,3,0) beats Dawn's .card-information > .price (0,2,0)
+   and component-price.css .price (0,1,0). */
+.product-card-wrapper .card-information .price {
+  font-family: var(--bb-font-body);
+  color: var(--bb-terracotta);
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* Compare-at price (original, struck-through): muted charcoal */
+.product-card-wrapper .card-information .price--on-sale .price-item--regular {
+  color: rgba(44, 44, 44, 0.35);
+  font-size: 1.2rem;
+}
+
+/* ---- Vendor label (when enabled in section settings) ------- */
+.product-card-wrapper .caption-with-letter-spacing {
+  color: rgba(44, 44, 44, 0.45);
+  letter-spacing: 0.1em;
+  font-size: 1rem;
+}
+
+/* ============================================================
+   Bare & Bloom — Footer
+   Warm charcoal base, cream text, terracotta accents.
+   ============================================================ */
+
+/* ---- Global token override -------------------------------- */
+/* Repoint Dawn's RGB-tuple color-scheme tokens to brand values
+   so every token-driven rule (borders, inputs, etc.) resolves
+   to charcoal/cream automatically.
+   .footer.gradient: two-class selector → specificity (0,2,0)
+   beats section-footer.css's single-class rules at (0,1,0).  */
+.footer {
+  --color-background: 44, 44, 44;       /* charcoal     */
+  --color-foreground: 253, 250, 248;    /* cream        */
+  --gradient-background: var(--bb-charcoal);
+  color: var(--bb-cream);
+}
+
+.footer.gradient {
+  background: var(--bb-charcoal);
+  border-top: none; /* (0,2,0) beats section-footer.css (0,1,0) */
+}
+
+/* ---- Tagline strip ---------------------------------------- */
+.bb-footer__tagline-bar {
+  padding: 5.6rem 2rem 4.8rem;
+  text-align: center;
+}
+
+.bb-footer__tagline {
+  font-family: var(--bb-font-heading);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.9rem, 2.4vw, 2.8rem);
+  letter-spacing: 0.03em;
+  color: var(--bb-cream);
+  margin: 0;
+  line-height: 1.35;
+}
+
+/* ---- Terracotta divider ----------------------------------- */
+.bb-footer__divider {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--bb-terracotta);
+  border: none;
+  margin: 0;
+  opacity: 0.55;
+}
+
+/* ---- Column headings -------------------------------------- */
+/* (0,2,0) beats section-footer.css .footer-block__heading (0,1,0) */
+.footer .footer-block__heading {
+  font-family: var(--bb-font-heading);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bb-cream);
+  margin-bottom: 2.4rem;
+}
+
+/* ---- Nav links -------------------------------------------- */
+/* section-footer.css: (0,2,0) → we need (0,3,0)              */
+.footer .footer-block__details-content .list-menu__item--link {
+  font-family: var(--bb-font-body);
+  font-size: 1.35rem;
+  font-weight: 300;
+  letter-spacing: 0.03em;
+  color: rgba(253, 250, 248, 0.72);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+/* section-footer.css hover at (0,3,0) with media → we use (0,4,0) */
+.footer .footer-block__details-content .list-menu__item--link:hover {
+  color: var(--bb-terracotta);
+  text-decoration: none;
+}
+
+.footer .footer-block__details-content .list-menu__item--active {
+  color: var(--bb-cream);
+  text-decoration: none;
+}
+
+/* ---- Body text blocks (text type, brand info) ------------- */
+.footer .footer-block__details-content.rte,
+.footer .footer-block__details-content .rte,
+.footer .footer-block__details-content p {
+  font-family: var(--bb-font-body);
+  font-size: 1.35rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.7;
+  color: rgba(253, 250, 248, 0.65);
+}
+
+/* ---- Social icons ----------------------------------------- */
+.footer .footer__list-social .list-social__link {
+  color: rgba(253, 250, 248, 0.72);
+  transition: color 200ms ease;
+}
+
+.footer .footer__list-social .list-social__link:hover {
+  color: var(--bb-terracotta);
+}
+
+.footer .footer__list-social .list-social__link svg {
+  fill: currentColor;
+}
+
+/* ---- Newsletter form -------------------------------------- */
+.footer .field__input {
+  background-color: rgba(253, 250, 248, 0.06);
+  border-color: rgba(253, 250, 248, 0.2);
+  color: var(--bb-cream);
+  caret-color: var(--bb-terracotta);
+}
+
+.footer .field__label {
+  font-family: var(--bb-font-body);
+  color: rgba(253, 250, 248, 0.5);
+}
+
+.footer .field__input:focus {
+  border-color: var(--bb-terracotta);
+  box-shadow: none;
+}
+
+/* Submit arrow — terracotta fill, cream on hover */
+.footer .newsletter-form__button.field__button {
+  background-color: var(--bb-terracotta);
+  border-color: var(--bb-terracotta);
+  color: var(--bb-cream);
+}
+
+.footer .newsletter-form__button.field__button:hover {
+  background-color: transparent;
+  border-color: rgba(253, 250, 248, 0.35);
+  color: var(--bb-cream);
+}
+
+/* ---- Bottom bar: copyright left, payment right ------------ */
+@media screen and (min-width: 750px) {
+  /* Flatten the two stacked bottom wrappers into one flex row */
+  .footer .footer__content-bottom {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Override section-footer.css width: 100% → (0,3,0) > (0,1,0) */
+  .footer .footer__content-bottom .footer__content-bottom-wrapper {
+    width: auto;
+    margin-top: 0;
+  }
+
+  /* First wrapper (localization + payment): right side */
+  .footer .footer__content-bottom .footer__content-bottom-wrapper:first-child {
+    order: 2;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  /* Second wrapper (copyright): left side */
+  .footer .footer__content-bottom .footer__content-bottom-wrapper:last-child {
+    order: 1;
+    flex: 1 1 auto;
+  }
+
+  /* Override --center class when copyright acts as left column */
+  .footer .footer__copyright,
+  .footer .footer__content-bottom-wrapper--center .footer__copyright {
+    text-align: left;
+    margin-top: 0;
+  }
+}
+
+/* ---- Copyright text --------------------------------------- */
+/* (0,3,0) beats section-footer.css .copyright__content a (0,2,0) */
+.footer .footer__copyright .copyright__content,
+.footer .footer__copyright .copyright__content a {
+  font-family: var(--bb-font-body);
+  font-size: 1.05rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  color: rgba(253, 250, 248, 0.5);
+  text-decoration: none;
+  transition: color 200ms ease;
+}
+
+.footer .footer__copyright .copyright__content a:hover,
+.footer .policies .copyright__content a:hover {
+  color: var(--bb-terracotta);
+  text-decoration: none;
+}
+
+.footer .policies .copyright__content a {
+  color: rgba(253, 250, 248, 0.5);
+}
+
+/* ---- Payment icons ---------------------------------------- */
+/* SVGs are full-colour by design; soften slightly on charcoal */
+.footer .list-payment__item svg,
+.footer .list-payment__item img {
+  opacity: 0.6;
+  transition: opacity 200ms ease;
+}
+
+.footer .list-payment__item:hover svg,
+.footer .list-payment__item:hover img {
+  opacity: 0.85;
+}
+
+/* ---- Localization selectors ------------------------------- */
+.footer .footer__localization h2 {
+  font-family: var(--bb-font-body);
+  color: rgba(253, 250, 248, 0.5);
+}
+
+/* ============================================================
+   Bare & Bloom — Product Page
+   Two-column editorial layout: 55% media / 45% info (medium).
+   Premium typography, terracotta controls, cream ground.
+   ============================================================ */
+
+/* ---- Page background ------------------------------------- */
+/* The product-info custom element wraps the whole section     */
+product-info {
+  background-color: var(--bb-cream);
+}
+
+/* ---- Sticky panel top offset ----------------------------- */
+/* section-main-product.css: .product__column-sticky (0,1,0)
+   Our .product .product__column-sticky (0,2,0) always wins.  */
+@media screen and (min-width: 750px) {
+  .product .product__column-sticky {
+    top: 8rem; /* clears sticky header (~6.8rem) + 1.2rem gap */
+  }
+}
+
+/* ---- Image gallery: strip borders & shadows -------------- */
+/* Zero out Dawn's media border/shadow CSS vars               */
+.product .product__media-item .media {
+  --media-border-width: 0px;
+  --media-border-opacity: 0;
+  --media-shadow-opacity: 0;
+  --media-shadow-visible: 0;
+  border-radius: 0;
+  background-color: var(--bb-blush); /* warm tint for image canvas */
+}
+
+/* ---- Subtle hover zoom on main product image ------------- */
+/* Works alongside lightbox click — CSS scale is the hover hint */
+@media (prefers-reduced-motion: no-preference) {
+  .product .product__media-item .media img {
+    transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .product .product__media-item:hover .media img {
+    transform: scale(1.04);
+  }
+}
+
+/* ---- Thumbnail strip ------------------------------------- */
+/* section-main-product.css: .thumbnail (0,1,0) → (0,2,0) wins */
+.product .thumbnail {
+  border: 1px solid rgba(44, 44, 44, 0.08);
+  transition: opacity 200ms ease, border-color 200ms ease;
+}
+
+.product .thumbnail:hover {
+  opacity: 1;
+  border-color: rgba(44, 44, 44, 0.25);
+}
+
+/* Active thumbnail: terracotta outline, no box-shadow
+   section-main-product.css: .thumbnail[aria-current] (0,2,0)
+   Our .product .thumbnail[aria-current] (0,3,0) wins.        */
+.product .thumbnail[aria-current] {
+  box-shadow: none;
+  border: 2px solid var(--bb-terracotta);
+  opacity: 1;
+}
+
+/* ---- Product info: breathing room ------------------------ */
+@media screen and (min-width: 750px) {
+  .product .product__info-wrapper {
+    padding-left: 5.6rem; /* generous gap from the image column */
+  }
+
+  /* Allow info to use full column width (Dawn caps at 60rem)  */
+  .product__info-container {
+    max-width: none;
+  }
+}
+
+.product__info-container > * + * {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+/* ---- Product title --------------------------------------- */
+/* h1 inside .product__title (the visible title element)
+   .product .product__title h1 (0,2,1) beats (0,1,1) and h1 (0,0,1) */
+.product .product__title h1 {
+  font-family: var(--bb-font-heading);
+  font-size: clamp(3.2rem, 3.2vw, 4.8rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  color: var(--bb-charcoal);
+  text-transform: none;
+  margin: 0;
+}
+
+/* ---- Price block ----------------------------------------- */
+/* Normal price (not on sale): terracotta, 1.8rem             */
+.product__info-container .price--large .price-item--regular {
+  font-family: var(--bb-font-body);
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--bb-terracotta);
+}
+
+/* Sale price: same terracotta style                          */
+.product__info-container .price--large .price-item--sale {
+  font-family: var(--bb-font-body);
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--bb-terracotta);
+}
+
+/* Compare-at / original price when on sale: muted + struck
+   section-main-product.css at (0,3,0) — we use (0,4,0)      */
+.product__info-container .price--large.price--on-sale .price-item--regular {
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: rgba(44, 44, 44, 0.4);
+  text-decoration: line-through;
+  text-decoration-color: rgba(44, 44, 44, 0.25);
+}
+
+/* Charcoal hairline below the price block
+   Targets the wrapping [id^="price-"] div                    */
+.product__info-container [id^="price-"] {
+  padding-bottom: 2.4rem;
+  border-bottom: 1px solid rgba(44, 44, 44, 0.1);
+}
+
+/* ---- Variant form label (e.g. "Size:", "Colour:")---------- */
+.product .product-form__input .form__label,
+.product .quantity__label.form__label {
+  font-family: var(--bb-font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bb-charcoal);
+}
+
+/* ---- Pill variant selectors ------------------------------ */
+/* component-product-variant-picker.css: (0,3,1) for checked  */
+/* Our prefix brings it to (0,4,1) for checked state          */
+
+/* Default pill */
+.product .product-form__input--pill input[type='radio'] + label {
+  font-family: var(--bb-font-body);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  border-color: rgba(44, 44, 44, 0.2);
+  background-color: var(--bb-cream);
+  color: var(--bb-charcoal);
+  border-radius: 3rem; /* full pill shape */
+  padding: 1rem 2.4rem;
+  transition:
+    background-color 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+/* Hover: sharpens border */
+.product .product-form__input--pill input[type='radio'] + label:hover {
+  border-color: var(--bb-charcoal);
+  background-color: transparent;
+}
+
+/* Selected: terracotta fill, cream text */
+.product .product-form__input--pill input[type='radio']:checked + label {
+  background-color: var(--bb-terracotta);
+  border-color: var(--bb-terracotta);
+  color: var(--bb-cream);
+}
+
+/* Unavailable / soldout variant */
+.product .product-form__input--pill input[type='radio'].disabled + label,
+.product .product-form__input--pill input[type='radio']:disabled + label {
+  border-color: rgba(44, 44, 44, 0.1);
+  color: rgba(44, 44, 44, 0.3);
+  background-color: transparent;
+}
+
+/* ---- Quantity selector ----------------------------------- */
+.product .quantity__input {
+  font-family: var(--bb-font-body);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--bb-charcoal);
+  border-color: rgba(44, 44, 44, 0.15);
+  background-color: transparent;
+}
+
+.product .quantity__button {
+  color: var(--bb-charcoal);
+  border-color: rgba(44, 44, 44, 0.15);
+  background-color: transparent;
+  transition: background-color 200ms ease;
+}
+
+.product .quantity__button:hover {
+  background-color: rgba(44, 44, 44, 0.05);
+}
+
+/* ---- Add to cart button ---------------------------------- */
+/* Full width terracotta — overrides Dawn's scheme button vars
+   Specificity (0,3,0) beats base.css .button--primary (0,1,0) */
+.product .product-form__submit {
+  background-color: var(--bb-terracotta);
+  color: var(--bb-cream);
+  border: 1px solid var(--bb-terracotta);
+  font-family: var(--bb-font-body);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 2rem 3.2rem;
+  border-radius: 0;
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease;
+}
+
+.product .product-form__submit:hover {
+  background-color: transparent;
+  color: var(--bb-terracotta);
+}
+
+/* Sold out / disabled state */
+.product .product-form__submit[disabled],
+.product .product-form__submit[aria-disabled='true'] {
+  background-color: rgba(44, 44, 44, 0.1);
+  border-color: transparent;
+  color: rgba(44, 44, 44, 0.35);
+  cursor: not-allowed;
+}
+
+/* ---- "Save for later" text link -------------------------- */
+.bb-product__wishlist-link {
+  display: block;
+  text-align: center;
+  font-family: var(--bb-font-body);
+  font-size: 1.2rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(44, 44, 44, 0.45);
+  text-decoration: none;
+  margin-top: 1.2rem;
+  transition: color 200ms ease;
+}
+
+.bb-product__wishlist-link:hover {
+  color: var(--bb-terracotta);
+}
+
+/* ---- Product description --------------------------------- */
+.product__description.rte {
+  font-family: var(--bb-font-body);
+  font-size: 1.45rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.75;
+  color: rgba(44, 44, 44, 0.68);
+}
+
+.product__description.rte p,
+.product__description.rte li {
+  color: rgba(44, 44, 44, 0.68);
+  line-height: 1.75;
+}
+
+.product__description.rte a {
+  color: var(--bb-terracotta);
+  text-decoration: underline;
+  text-decoration-color: rgba(196, 112, 79, 0.4);
+  text-underline-offset: 0.3em;
+}
+
+/* ---- Collapsible accordion tabs (care, materials, etc.) -- */
+.product .product__accordion details {
+  border-top: 1px solid rgba(44, 44, 44, 0.08);
+}
+
+.product .product__accordion details:last-of-type {
+  border-bottom: 1px solid rgba(44, 44, 44, 0.08);
+}
+
+.product .product__accordion .accordion__title {
+  font-family: var(--bb-font-body);
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bb-charcoal);
+}
+
+.product .product__accordion .accordion__content {
+  font-family: var(--bb-font-body);
+  font-size: 1.35rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(44, 44, 44, 0.68);
+}
+
+/* ---- Tax & shipping note --------------------------------- */
+.product .product__tax.caption {
+  font-family: var(--bb-font-body);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: rgba(44, 44, 44, 0.45);
+}
+
+.product .product__tax a {
+  color: var(--bb-terracotta);
+  text-underline-offset: 0.2em;
 }
