@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bare & Bloom — Maternity & Nursing</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush: #F2E4DC;
+      --rose: #D9A89A;
+      --terracotta: #B5685A;
+      --sage: #8FA88A;
+      --cream: #FAF6F1;
+      --charcoal: #2E2724;
+      --warm-grey: #9B8F8A;
+      --petal: #EDD5CA;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── ANNOUNCEMENT BAR ─── */
+    .announce {
+      background: var(--charcoal);
+      color: var(--petal);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: .7rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,246,241,.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(181,104,90,.15);
+      padding: 0 50px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.6rem;
+      color: var(--charcoal);
+      text-decoration: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .nav-logo em { font-style: italic; color: var(--terracotta); }
+    .nav-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+    .nav-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      transition: color .2s;
+    }
+    .nav-actions button:hover { color: var(--terracotta); }
+    .cart-btn {
+      background: var(--terracotta) !important;
+      color: white !important;
+      padding: 8px 18px !important;
+      border-radius: 40px !important;
+    }
+    .cart-btn:hover { background: #9e5a4d !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: calc(100vh - 100px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-left {
+      background: var(--blush);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #e8c4b8 0%, transparent 70%);
+      bottom: -100px; right: -100px;
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: .68rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 2rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 4.5rem;
+      line-height: 1.05;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title em { font-style: italic; color: var(--terracotta); }
+    .hero-desc {
+      font-size: .95rem;
+      line-height: 1.9;
+      color: var(--warm-grey);
+      max-width: 380px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--terracotta);
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-family: 'Jost', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-primary:hover { background: #9e5a4d; transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--charcoal);
+      border: 1px solid rgba(46,39,36,.25);
+      padding: 14px 32px;
+      border-radius: 40px;
+      font-family: 'Jost', sans-serif;
+      font-size: .72rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .25s;
+    }
+    .btn-secondary:hover { border-color: var(--terracotta); color: var(--terracotta); }
+    .hero-trust {
+      display: flex;
+      gap: 30px;
+      margin-top: 3rem;
+    }
+    .trust-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .trust-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--charcoal);
+    }
+    .trust-label {
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+    }
+    .trust-sep { width: 1px; background: rgba(155,143,138,.3); }
+
+    .hero-right {
+      background: var(--petal);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero-img-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #e8cfc4 0%, #c4907e 60%, #a06858 100%);
+    }
+    .hero-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(46,39,36,.35) 0%, transparent 50%);
+    }
+    .hero-img-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px;
+      color: white;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(250,246,241,.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,.3);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: .8rem;
+    }
+    .hero-img-caption {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      font-style: italic;
+    }
+    /* Floating product card */
+    .hero-product-card {
+      position: absolute;
+      top: 40px; right: 40px;
+      background: rgba(250,246,241,.92);
+      backdrop-filter: blur(12px);
+      border-radius: 14px;
+      padding: 18px 20px;
+      width: 170px;
+      z-index: 3;
+      box-shadow: 0 20px 60px rgba(46,39,36,.15);
+    }
+    .hpc-img {
+      width: 100%;
+      height: 80px;
+      background: linear-gradient(135deg, #d4b5a8, #b07060);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: .85rem;
+      color: white;
+    }
+    .hpc-name {
+      font-size: .72rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      margin-bottom: 3px;
+    }
+    .hpc-price {
+      font-size: .7rem;
+      color: var(--terracotta);
+      font-weight: 400;
+    }
+    .hpc-stars {
+      font-size: .65rem;
+      color: var(--rose);
+      margin-top: 4px;
+    }
+
+    /* ─── CATEGORY STRIP ─── */
+    .categories {
+      padding: 70px 50px;
+      background: var(--cream);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .section-eyebrow {
+      font-size: .65rem;
+      letter-spacing: .4em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: .8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2.6rem;
+      color: var(--charcoal);
+    }
+    .section-title em { font-style: italic; }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .cat-card {
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      aspect-ratio: 3/4;
+      transition: transform .3s;
+    }
+    .cat-card:hover { transform: translateY(-4px); }
+    .cat-card:hover .cat-img { transform: scale(1.04); }
+    .cat-img {
+      width: 100%; height: 100%;
+      transition: transform .5s;
+    }
+    .cat-c1 { background: linear-gradient(160deg, #d9b8a8 0%, #a87060 100%); }
+    .cat-c2 { background: linear-gradient(160deg, #b8c8b4 0%, #6a8a64 100%); }
+    .cat-c3 { background: linear-gradient(160deg, #e0c8bc 0%, #c09080 100%); }
+    .cat-c4 { background: linear-gradient(160deg, #c8d0d8 0%, #8090a0 100%); }
+    .cat-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(46,39,36,.5) 0%, transparent 55%);
+    }
+    .cat-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 24px;
+      color: white;
+    }
+    .cat-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      font-style: italic;
+      margin-bottom: 4px;
+    }
+    .cat-count {
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      opacity: .8;
+    }
+    .cat-arrow {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,.2);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .9rem;
+      color: white;
+      transition: background .2s;
+    }
+    .cat-card:hover .cat-arrow { background: var(--terracotta); }
+
+    /* ─── BESTSELLERS ─── */
+    .bestsellers {
+      padding: 70px 50px;
+      background: var(--blush);
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 3rem;
+    }
+    .product-card {
+      background: var(--cream);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 50px rgba(46,39,36,.1);
+    }
+    .product-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      position: relative;
+      overflow: hidden;
+    }
+    .product-img-bg {
+      width: 100%; height: 100%;
+      transition: transform .5s;
+    }
+    .product-card:hover .product-img-bg { transform: scale(1.05); }
+    .pi-1 { background: linear-gradient(160deg, #e0c0b0 0%, #b07860 100%); }
+    .pi-2 { background: linear-gradient(160deg, #c4d4c0 0%, #7a9878 100%); }
+    .pi-3 { background: linear-gradient(160deg, #e4ccc0 0%, #c09080 100%); }
+    .pi-4 { background: linear-gradient(160deg, #d0c4d4 0%, #907898 100%); }
+    .product-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--terracotta);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: .62rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .product-info {
+      padding: 16px 18px 18px;
+    }
+    .product-category {
+      font-size: .62rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      margin-bottom: 5px;
+    }
+    .product-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+    .product-stars {
+      color: var(--rose);
+      font-size: .7rem;
+      margin-bottom: 6px;
+    }
+    .product-stars span {
+      color: var(--warm-grey);
+      font-size: .65rem;
+      margin-left: 4px;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .product-price {
+      font-size: .95rem;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .product-price .was {
+      font-size: .75rem;
+      color: var(--warm-grey);
+      text-decoration: line-through;
+      font-weight: 300;
+      margin-left: 5px;
+    }
+    .add-btn {
+      width: 34px; height: 34px;
+      background: var(--terracotta);
+      border: none;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .2s, transform .2s;
+    }
+    .add-btn:hover { background: #9e5a4d; transform: scale(1.1); }
+
+    /* ─── PROMISE STRIP ─── */
+    .promise-strip {
+      background: var(--charcoal);
+      padding: 50px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+    }
+    .promise-item {
+      padding: 20px 30px;
+      text-align: center;
+      border-right: 1px solid rgba(155,143,138,.15);
+    }
+    .promise-item:last-child { border-right: none; }
+    .promise-icon {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+    .promise-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--petal);
+      margin-bottom: 5px;
+    }
+    .promise-desc {
+      font-size: .72rem;
+      color: #6b5f5a;
+      line-height: 1.6;
+    }
+
+    /* ─── BRAND STORY SECTION ─── */
+    .brand-story {
+      padding: 100px 50px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .story-visual {
+      position: relative;
+    }
+    .story-main-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, #d9bfb0 0%, #a87868 100%);
+      border-radius: 16px;
+    }
+    .story-accent-img {
+      position: absolute;
+      width: 55%;
+      aspect-ratio: 1;
+      background: linear-gradient(160deg, #b8c8b4 0%, #7a9870 100%);
+      border-radius: 12px;
+      bottom: -30px; right: -30px;
+      border: 6px solid var(--cream);
+    }
+    .story-text .section-eyebrow { text-align: left; }
+    .story-text h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2.8rem;
+      line-height: 1.15;
+      margin: 1rem 0 1.5rem;
+    }
+    .story-text h2 em { font-style: italic; color: var(--terracotta); }
+    .story-text p {
+      font-size: .93rem;
+      line-height: 1.95;
+      color: var(--warm-grey);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials {
+      padding: 80px 50px;
+      background: var(--blush);
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 3rem;
+    }
+    .testimonial-card {
+      background: var(--cream);
+      border-radius: 14px;
+      padding: 32px;
+    }
+    .t-stars { color: var(--rose); font-size: .85rem; margin-bottom: 1rem; }
+    .t-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--charcoal);
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .t-author { display: flex; align-items: center; gap: 12px; }
+    .t-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      color: white;
+      font-style: italic;
+    }
+    .t-name {
+      font-size: .78rem;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .t-detail {
+      font-size: .7rem;
+      color: var(--warm-grey);
+    }
+
+    /* ─── EMAIL SIGNUP ─── */
+    .email-section {
+      padding: 90px 50px;
+      background: var(--charcoal);
+      text-align: center;
+    }
+    .email-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 2.8rem;
+      color: var(--cream);
+      margin-bottom: .5rem;
+    }
+    .email-section h2 em { font-style: italic; color: var(--rose); }
+    .email-section p {
+      font-size: .88rem;
+      color: #9b8f8a;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+    .email-form {
+      display: flex;
+      max-width: 420px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .email-form input {
+      flex: 1;
+      padding: 14px 20px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(155,143,138,.25);
+      border-right: none;
+      border-radius: 40px 0 0 40px;
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: .82rem;
+      outline: none;
+    }
+    .email-form input::placeholder { color: #6b5f5a; }
+    .email-form button {
+      padding: 14px 24px;
+      background: var(--terracotta);
+      border: none;
+      border-radius: 0 40px 40px 0;
+      color: white;
+      font-family: 'Jost', sans-serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .email-form button:hover { background: #9e5a4d; }
+    .email-note {
+      font-size: .68rem;
+      color: #5a5050;
+      margin-top: 1rem;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #221e1b;
+      padding: 60px 50px 30px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 50px;
+      margin-bottom: 50px;
+    }
+    .footer-brand .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+    .footer-brand .logo em { font-style: italic; color: var(--rose); }
+    .footer-brand p {
+      font-size: .82rem;
+      color: #6b5f5a;
+      line-height: 1.8;
+      max-width: 240px;
+    }
+    .footer-col h4 {
+      font-size: .65rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--warm-grey);
+      margin-bottom: 1.2rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li {
+      margin-bottom: .6rem;
+    }
+    .footer-col a {
+      text-decoration: none;
+      font-size: .82rem;
+      color: #6b5f5a;
+      transition: color .2s;
+    }
+    .footer-col a:hover { color: var(--rose); }
+    .footer-bottom {
+      border-top: 1px solid rgba(155,143,138,.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p { font-size: .7rem; color: #4a4040; }
+    .footer-socials { display: flex; gap: 14px; }
+    .social-btn {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: rgba(155,143,138,.1);
+      display: flex; align-items: center; justify-content: center;
+      color: #6b5f5a;
+      font-size: .75rem;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      text-decoration: none;
+    }
+    .social-btn:hover { background: var(--terracotta); color: white; }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 50vh; }
+      .cat-grid, .product-grid { grid-template-columns: 1fr 1fr; }
+      .promise-strip { grid-template-columns: 1fr 1fr; }
+      .brand-story { grid-template-columns: 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">✦ Free shipping on orders over $75 · Use code BLOOM15 for 15% off your first order ✦</div>
+
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#">Nursing Bras</a></li>
+    <li><a href="#">Leggings</a></li>
+    <li><a href="#">Shorts</a></li>
+    <li><a href="#">New Arrivals</a></li>
+  </ul>
+  <a href="#" class="nav-logo">Bare <em>&</em> Bloom</a>
+  <div class="nav-actions">
+    <button>Search</button>
+    <button>Account</button>
+    <button class="cart-btn">Bag (0)</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">New Season Collection</p>
+    <h1 class="hero-title">
+      Soft as skin.<br>
+      <em>Made for</em><br>
+      becoming.
+    </h1>
+    <p class="hero-desc">Nursing bras, maternity leggings and clothing crafted for every tender stage — pregnancy, nursing, and the quiet beauty of postpartum.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">Shop the Collection</button>
+      <button class="btn-secondary">Our Story</button>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-num">4.9★</span>
+        <span class="trust-label">Avg. Rating</span>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-num">12k+</span>
+        <span class="trust-label">Happy Mamas</span>
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-item">
+        <span class="trust-num">30</span>
+        <span class="trust-label">Day Returns</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-img-bg"></div>
+    <div class="hero-img-overlay"></div>
+    <div class="hero-img-content">
+      <div class="hero-badge">✦ New Arrival</div>
+      <p class="hero-img-caption">"The bra I wish I'd had with my first."</p>
+    </div>
+    <div class="hero-product-card">
+      <div class="hpc-img">Nursing Bra</div>
+      <div class="hpc-name">The Tender Bra</div>
+      <div class="hpc-price">$58.00</div>
+      <div class="hpc-stars">★★★★★ <span style="color:var(--warm-grey); font-size:.6rem;">(247)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+  <div class="section-header">
+    <p class="section-eyebrow">Shop by Stage</p>
+    <h2 class="section-title">Everything you need,<br><em>exactly when you need it</em></h2>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cat-img cat-c1"></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-content">
+        <p class="cat-name">Nursing Bras</p>
+        <p class="cat-count">18 styles</p>
+      </div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img cat-c2"></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-content">
+        <p class="cat-name">Maternity Leggings</p>
+        <p class="cat-count">12 styles</p>
+      </div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img cat-c3"></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-content">
+        <p class="cat-name">Maternity Shorts</p>
+        <p class="cat-count">9 styles</p>
+      </div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-img cat-c4"></div>
+      <div class="cat-overlay"></div>
+      <div class="cat-arrow">→</div>
+      <div class="cat-content">
+        <p class="cat-name">Postpartum</p>
+        <p class="cat-count">14 styles</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BESTSELLERS -->
+<section class="bestsellers">
+  <div class="section-header">
+    <p class="section-eyebrow">Most Loved</p>
+    <h2 class="section-title">Our <em>bestsellers</em></h2>
+  </div>
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-bg pi-1"></div>
+        <div class="product-badge">Best Seller</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Nursing Bra</p>
+        <p class="product-name">The Tender Bra</p>
+        <p class="product-stars">★★★★★ <span>(247)</span></p>
+        <div class="product-footer">
+          <p class="product-price">$58 <span class="was">$72</span></p>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-bg pi-2"></div>
+        <div class="product-badge">New</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Maternity Leggings</p>
+        <p class="product-name">The Bloom Legging</p>
+        <p class="product-stars">★★★★★ <span>(183)</span></p>
+        <div class="product-footer">
+          <p class="product-price">$68</p>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-bg pi-3"></div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Maternity Shorts</p>
+        <p class="product-name">The Bare Short</p>
+        <p class="product-stars">★★★★☆ <span>(96)</span></p>
+        <div class="product-footer">
+          <p class="product-price">$52</p>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <div class="product-img-bg pi-4"></div>
+        <div class="product-badge">Fan Fave</div>
+      </div>
+      <div class="product-info">
+        <p class="product-category">Nursing Bra</p>
+        <p class="product-name">The Night Bra</p>
+        <p class="product-stars">★★★★★ <span>(312)</span></p>
+        <div class="product-footer">
+          <p class="product-price">$48</p>
+          <button class="add-btn">+</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMISE STRIP -->
+<div class="promise-strip">
+  <div class="promise-item">
+    <div class="promise-icon">🌿</div>
+    <p class="promise-title">Softness First</p>
+    <p class="promise-desc">Only fabrics gentle enough for postpartum skin and newborns</p>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon">♻️</div>
+    <p class="promise-title">Thoughtfully Made</p>
+    <p class="promise-desc">Ethically sourced, responsibly manufactured</p>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon">↩️</div>
+    <p class="promise-title">30-Day Returns</p>
+    <p class="promise-desc">No questions, no pressure. Your fit matters.</p>
+  </div>
+  <div class="promise-item">
+    <div class="promise-icon">💬</div>
+    <p class="promise-title">Real Support</p>
+    <p class="promise-desc">Human care team available 7 days a week</p>
+  </div>
+</div>
+
+<!-- BRAND STORY -->
+<section class="brand-story">
+  <div class="story-visual">
+    <div class="story-main-img"></div>
+    <div class="story-accent-img"></div>
+  </div>
+  <div class="story-text">
+    <p class="section-eyebrow">Our Story</p>
+    <h2>Designed for the version of you <em>you're still becoming</em></h2>
+    <p>Bare & Bloom was born from a simple truth: the women in this season of life deserve clothing that holds them gently — not clothing they have to fight with at 3am, or feel embarrassed about at a café, or squeeze out of while their baby is crying.</p>
+    <p>We design for the full experience: the swollen mornings, the tender afternoons, the moments of unexpected beauty. Every seam, every clasp, every waistband is considered with you in mind.</p>
+    <button class="btn-primary" style="margin-top: 1rem;">Read Our Story</button>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header">
+    <p class="section-eyebrow">Real Mamas</p>
+    <h2 class="section-title">Words that <em>mean everything</em></h2>
+  </div>
+  <div class="testimonial-grid">
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"The Tender Bra is genuinely the first nursing bra I've worn that doesn't make me feel frumpy. I cried a little, honestly."</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background: linear-gradient(135deg, #d9a89a, #b5685a);">S</div>
+        <div>
+          <p class="t-name">Sarah M.</p>
+          <p class="t-detail">Mum of 2 · Verified buyer</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"The Bloom Leggings got me through my entire third trimester. I wore them every single day and they still look brand new."</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background: linear-gradient(135deg, #8fa88a, #5a7858);">A</div>
+        <div>
+          <p class="t-name">Amara K.</p>
+          <p class="t-detail">First-time mama · Verified buyer</p>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-quote">"I ordered these for my second pregnancy and wished I'd found Bare & Bloom the first time around. The quality is unlike anything I've tried."</p>
+      <div class="t-author">
+        <div class="t-avatar" style="background: linear-gradient(135deg, #c8b8c0, #907080);">L</div>
+        <div>
+          <p class="t-name">Leilani R.</p>
+          <p class="t-detail">Mum of 3 · Verified buyer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL SIGNUP -->
+<section class="email-section">
+  <p class="section-eyebrow" style="color: var(--rose); margin-bottom: 1rem;">Join the Community</p>
+  <h2>For every <em>tender moment</em></h2>
+  <p>New arrivals, honest motherhood stories, and 15% off<br>your first order — delivered softly to your inbox.</p>
+  <div class="email-form">
+    <input type="email" placeholder="Your email address"/>
+    <button>Subscribe</button>
+  </div>
+  <p class="email-note">We respect your inbox. Unsubscribe any time.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">Bare <em>&</em> Bloom</div>
+      <p>Clothing made for the tenderness of becoming a mother. For the bare, the blooming, and everything in between.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#">Nursing Bras</a></li>
+        <li><a href="#">Maternity Leggings</a></li>
+        <li><a href="#">Maternity Shorts</a></li>
+        <li><a href="#">Postpartum</a></li>
+        <li><a href="#">New Arrivals</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Brand Values</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Affiliates</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Bare & Bloom. All rights reserved.</p>
+    <div class="footer-socials">
+      <a class="social-btn" href="#">ig</a>
+      <a class="social-btn" href="#">tt</a>
+      <a class="social-btn" href="#">pi</a>
+      <a class="social-btn" href="#">fb</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

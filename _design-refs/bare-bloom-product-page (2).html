@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Tender Bra — Bare & Bloom</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush: #F2E4DC;
+      --rose: #D9A89A;
+      --terracotta: #B5685A;
+      --sage: #8FA88A;
+      --cream: #FAF6F1;
+      --charcoal: #2E2724;
+      --warm-grey: #9B8F8A;
+      --petal: #EDD5CA;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── ANNOUNCE ── */
+    .announce {
+      background: var(--charcoal);
+      color: var(--petal);
+      text-align: center;
+      padding: 10px 20px;
+      font-size: .68rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,246,241,.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(181,104,90,.12);
+      padding: 0 50px; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      text-decoration: none; font-size: .7rem;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--warm-grey); transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--terracotta); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: 1.55rem; color: var(--charcoal); text-decoration: none;
+      position: absolute; left: 50%; transform: translateX(-50%);
+    }
+    .nav-logo em { font-style: italic; color: var(--terracotta); }
+    .nav-right { display: flex; gap: 16px; align-items: center; }
+    .nav-right button {
+      background: none; border: none; cursor: pointer;
+      font-size: .7rem; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--warm-grey); font-family: 'Jost', sans-serif;
+    }
+    .cart-pill {
+      background: var(--terracotta) !important; color: white !important;
+      padding: 8px 18px !important; border-radius: 40px !important;
+      transition: background .2s !important;
+    }
+    .cart-pill:hover { background: #9e5a4d !important; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 18px 50px;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      color: var(--warm-grey);
+      display: flex; gap: 8px; align-items: center;
+    }
+    .breadcrumb a { color: var(--warm-grey); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--terracotta); }
+    .breadcrumb span { opacity: .4; }
+
+    /* ── PRODUCT MAIN ── */
+    .product-main {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 0;
+      min-height: 85vh;
+    }
+
+    /* ── GALLERY ── */
+    .gallery {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 10px;
+      padding: 0 30px 40px 50px;
+      position: sticky;
+      top: 68px;
+      height: fit-content;
+    }
+    .thumbs {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .thumb {
+      width: 72px; height: 88px;
+      border-radius: 8px; cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color .2s;
+      overflow: hidden;
+    }
+    .thumb.active { border-color: var(--terracotta); }
+    .thumb-bg { width: 100%; height: 100%; }
+    .t1 { background: linear-gradient(160deg, #e0c0b0 0%, #b07860 100%); }
+    .t2 { background: linear-gradient(160deg, #d4b8ac 0%, #a06858 100%); }
+    .t3 { background: linear-gradient(160deg, #c8b0a4 0%, #966050 100%); }
+    .t4 { background: linear-gradient(160deg, #dcc4b8 0%, #b88070 100%); }
+    .t5 { background: linear-gradient(160deg, #e4cec4 0%, #c09080 100%); }
+
+    .main-img-wrap {
+      border-radius: 14px; overflow: hidden;
+      aspect-ratio: 4/5; position: relative;
+    }
+    .main-img {
+      width: 100%; height: 100%;
+      background: linear-gradient(160deg, #e0c0b0 0%, #b07860 50%, #8a5848 100%);
+      display: flex; align-items: flex-end;
+      position: relative;
+    }
+    .main-img-badge {
+      position: absolute; top: 18px; left: 18px;
+      background: var(--terracotta); color: white;
+      padding: 6px 14px; border-radius: 40px;
+      font-size: .62rem; letter-spacing: .18em; text-transform: uppercase;
+    }
+    .main-img-tag {
+      position: absolute; bottom: 18px; right: 18px;
+      background: rgba(250,246,241,.88); backdrop-filter: blur(10px);
+      border-radius: 40px; padding: 8px 16px;
+      font-size: .68rem; color: var(--charcoal); letter-spacing: .08em;
+    }
+    /* Zoom hint */
+    .zoom-hint {
+      position: absolute; bottom: 18px; left: 18px;
+      font-size: .62rem; color: rgba(255,255,255,.7);
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+
+    /* ── PRODUCT INFO ── */
+    .product-info {
+      padding: 10px 50px 60px 30px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+
+    /* Social proof bar */
+    .social-proof {
+      display: flex; align-items: center; gap: 14px;
+      padding: 10px 16px;
+      background: var(--blush); border-radius: 40px;
+      width: fit-content; margin-bottom: 22px;
+    }
+    .sp-stars { color: var(--rose); font-size: .8rem; }
+    .sp-text { font-size: .72rem; color: var(--charcoal); }
+    .sp-text strong { font-weight: 500; }
+    .sp-divider { width: 1px; height: 14px; background: rgba(181,104,90,.25); }
+    .sp-badge {
+      font-size: .62rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--terracotta); font-weight: 500;
+    }
+
+    /* Product title area */
+    .product-category-label {
+      font-size: .65rem; letter-spacing: .3em;
+      text-transform: uppercase; color: var(--warm-grey); margin-bottom: 8px;
+    }
+    .product-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 3rem; line-height: 1.05;
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+    .product-title em { font-style: italic; }
+    .product-subtitle {
+      font-size: .88rem; color: var(--warm-grey);
+      line-height: 1.7; margin-bottom: 20px; max-width: 400px;
+    }
+
+    /* Price */
+    .price-row {
+      display: flex; align-items: baseline; gap: 10px;
+      margin-bottom: 6px;
+    }
+    .price-main {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--charcoal);
+    }
+    .price-was {
+      font-size: .88rem; color: var(--warm-grey);
+      text-decoration: line-through;
+    }
+    .price-save {
+      font-size: .7rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--sage);
+      font-weight: 500; background: rgba(143,168,138,.12);
+      padding: 3px 10px; border-radius: 40px;
+    }
+    .installment {
+      font-size: .75rem; color: var(--warm-grey);
+      margin-bottom: 22px;
+    }
+    .installment strong { color: var(--charcoal); font-weight: 500; }
+
+    .divider { height: 1px; background: rgba(155,143,138,.18); margin: 18px 0; }
+
+    /* Color picker */
+    .option-label {
+      font-size: .7rem; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--charcoal);
+      margin-bottom: 12px; display: flex; gap: 8px; align-items: center;
+    }
+    .option-label span { color: var(--warm-grey); font-weight: 300; text-transform: none; letter-spacing: 0; font-size: .8rem; }
+    .colour-swatches { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
+    .colour-swatch {
+      width: 36px; height: 36px; border-radius: 50%;
+      cursor: pointer; border: 2px solid transparent;
+      transition: transform .2s, border-color .2s;
+      position: relative;
+    }
+    .colour-swatch:hover { transform: scale(1.1); }
+    .colour-swatch.active { border-color: var(--charcoal); }
+    .colour-swatch.active::after {
+      content: '✓'; position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .65rem; color: white;
+      text-shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+
+    /* Size picker */
+    .size-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+    .size-btn {
+      padding: 9px 16px; border-radius: 8px;
+      border: 1px solid rgba(155,143,138,.35);
+      background: transparent; cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: .75rem; letter-spacing: .08em;
+      color: var(--charcoal); transition: all .2s;
+    }
+    .size-btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
+    .size-btn.active { background: var(--charcoal); color: white; border-color: var(--charcoal); }
+    .size-btn.sold-out {
+      opacity: .35; cursor: not-allowed;
+      text-decoration: line-through;
+    }
+    .size-guide-link {
+      font-size: .72rem; color: var(--terracotta);
+      text-decoration: underline; cursor: pointer;
+      margin-bottom: 22px; display: inline-block;
+    }
+
+    /* CTA Buttons */
+    .cta-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px; }
+    .btn-atc {
+      width: 100%; padding: 16px;
+      background: var(--terracotta); color: white;
+      border: none; border-radius: 40px;
+      font-family: 'Jost', sans-serif;
+      font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+      cursor: pointer; transition: all .25s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-atc:hover { background: #9e5a4d; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(181,104,90,.3); }
+    .btn-buy {
+      width: 100%; padding: 16px;
+      background: var(--charcoal); color: white;
+      border: none; border-radius: 40px;
+      font-family: 'Jost', sans-serif;
+      font-size: .75rem; letter-spacing: .2em; text-transform: uppercase;
+      cursor: pointer; transition: all .25s;
+    }
+    .btn-buy:hover { background: #1a1614; }
+
+    /* Trust badges */
+    .trust-row {
+      display: flex; gap: 0; margin-bottom: 24px;
+      border: 1px solid rgba(155,143,138,.2); border-radius: 12px;
+      overflow: hidden;
+    }
+    .trust-badge {
+      flex: 1; padding: 12px 8px; text-align: center;
+      border-right: 1px solid rgba(155,143,138,.2);
+      display: flex; flex-direction: column; gap: 4px; align-items: center;
+    }
+    .trust-badge:last-child { border-right: none; }
+    .trust-icon { font-size: 1.1rem; }
+    .trust-text { font-size: .62rem; letter-spacing: .05em; color: var(--warm-grey); line-height: 1.3; }
+    .trust-text strong { display: block; color: var(--charcoal); font-weight: 500; font-size: .68rem; }
+
+    /* Accordion / Details */
+    .accordion { border-top: 1px solid rgba(155,143,138,.18); }
+    .acc-item { border-bottom: 1px solid rgba(155,143,138,.18); }
+    .acc-header {
+      width: 100%; background: none; border: none;
+      padding: 16px 0; display: flex;
+      justify-content: space-between; align-items: center;
+      cursor: pointer; font-family: 'Jost', sans-serif;
+      font-size: .8rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--charcoal);
+    }
+    .acc-icon { font-size: 1.2rem; color: var(--warm-grey); transition: transform .3s; }
+    .acc-body {
+      font-size: .88rem; line-height: 1.85;
+      color: var(--warm-grey); padding-bottom: 16px;
+      display: none;
+    }
+    .acc-body.open { display: block; }
+    .acc-header.open .acc-icon { transform: rotate(45deg); }
+    .acc-body ul { padding-left: 1.2rem; }
+    .acc-body li { margin-bottom: .4rem; }
+
+    /* ── STICKY ATC BAR ── */
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(250,246,241,.96); backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(181,104,90,.15);
+      padding: 14px 50px;
+      display: flex; align-items: center; justify-content: space-between;
+      z-index: 90;
+      transform: translateY(100%);
+      transition: transform .3s;
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-product { display: flex; gap: 14px; align-items: center; }
+    .sticky-thumb {
+      width: 48px; height: 58px; border-radius: 8px;
+      background: linear-gradient(160deg, #e0c0b0, #b07860);
+    }
+    .sticky-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400; color: var(--charcoal);
+    }
+    .sticky-price { font-size: .85rem; color: var(--warm-grey); }
+    .sticky-atc {
+      background: var(--terracotta); color: white;
+      border: none; border-radius: 40px; padding: 12px 28px;
+      font-family: 'Jost', sans-serif; font-size: .7rem;
+      letter-spacing: .2em; text-transform: uppercase; cursor: pointer;
+      transition: background .2s;
+    }
+    .sticky-atc:hover { background: #9e5a4d; }
+
+    /* ── BENEFITS STRIP ── */
+    .benefits-strip {
+      background: var(--blush);
+      padding: 50px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+    }
+    .benefit-item { text-align: center; }
+    .benefit-icon { font-size: 2rem; margin-bottom: 10px; }
+    .benefit-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400;
+      color: var(--charcoal); margin-bottom: 6px;
+    }
+    .benefit-desc {
+      font-size: .78rem; color: var(--warm-grey); line-height: 1.65;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      padding: 80px 50px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: center;
+    }
+    .how-visual {
+      background: linear-gradient(160deg, #d9bfb0 0%, #a87868 100%);
+      aspect-ratio: 4/5; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .how-visual-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1.4rem;
+      color: white; text-align: center; padding: 30px;
+      line-height: 1.5;
+    }
+    .how-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300; font-size: 2.6rem; line-height: 1.15;
+      color: var(--charcoal); margin-bottom: 2rem;
+    }
+    .how-content h2 em { font-style: italic; color: var(--terracotta); }
+    .how-steps { display: flex; flex-direction: column; gap: 0; }
+    .how-step {
+      display: flex; gap: 20px; padding: 20px 0;
+      border-bottom: 1px solid rgba(155,143,138,.15);
+    }
+    .how-step:last-child { border-bottom: none; }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem; font-weight: 300; color: var(--petal);
+      min-width: 36px; line-height: 1;
+    }
+    .step-content h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400;
+      color: var(--charcoal); margin-bottom: 4px;
+    }
+    .step-content p {
+      font-size: .83rem; color: var(--warm-grey); line-height: 1.7;
+    }
+
+    /* ── REVIEWS ── */
+    .reviews-section {
+      background: var(--blush); padding: 80px 50px;
+    }
+    .reviews-header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 40px;
+    }
+    .reviews-summary { display: flex; align-items: center; gap: 30px; }
+    .big-score {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem; font-weight: 300; color: var(--charcoal); line-height: 1;
+    }
+    .score-detail { display: flex; flex-direction: column; gap: 4px; }
+    .score-stars { color: var(--rose); font-size: 1.1rem; }
+    .score-count { font-size: .75rem; color: var(--warm-grey); }
+    .review-bars { display: flex; flex-direction: column; gap: 5px; }
+    .bar-row { display: flex; align-items: center; gap: 10px; }
+    .bar-label { font-size: .68rem; color: var(--warm-grey); width: 20px; text-align: right; }
+    .bar-track { flex: 1; height: 5px; background: rgba(155,143,138,.2); border-radius: 3px; max-width: 120px; }
+    .bar-fill { height: 100%; border-radius: 3px; background: var(--rose); }
+    .bar-pct { font-size: .65rem; color: var(--warm-grey); width: 28px; }
+
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+    }
+    .review-card {
+      background: var(--cream); border-radius: 14px; padding: 28px;
+    }
+    .rc-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 12px;
+    }
+    .rc-stars { color: var(--rose); font-size: .8rem; }
+    .rc-verified {
+      font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--sage); font-weight: 500;
+    }
+    .rc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; font-weight: 400; color: var(--charcoal);
+      margin-bottom: 8px;
+    }
+    .rc-body {
+      font-size: .83rem; color: var(--warm-grey);
+      line-height: 1.75; margin-bottom: 14px;
+      font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .rc-author {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .rc-avatar {
+      width: 34px; height: 34px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: .9rem; color: white; font-style: italic;
+    }
+    .rc-name { font-size: .75rem; font-weight: 500; color: var(--charcoal); }
+    .rc-meta { font-size: .67rem; color: var(--warm-grey); }
+
+    /* ── COMPLETE THE LOOK ── */
+    .complete-section { padding: 80px 50px; }
+    .complete-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+      margin-top: 3rem;
+    }
+    .complete-card {
+      border-radius: 14px; overflow: hidden;
+      cursor: pointer; transition: transform .3s;
+    }
+    .complete-card:hover { transform: translateY(-4px); }
+    .cc-img {
+      aspect-ratio: 3/4;
+      transition: transform .5s;
+    }
+    .complete-card:hover .cc-img { transform: scale(1.03); }
+    .cc1 { background: linear-gradient(160deg, #c4d4c0 0%, #7a9878 100%); }
+    .cc2 { background: linear-gradient(160deg, #e4ccc0 0%, #c09080 100%); }
+    .cc3 { background: linear-gradient(160deg, #d0c4d4 0%, #907898 100%); }
+    .cc-info {
+      padding: 14px 16px 16px;
+      background: var(--blush);
+    }
+    .cc-cat { font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--warm-grey); margin-bottom: 3px; }
+    .cc-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 400; color: var(--charcoal);
+    }
+    .cc-price { font-size: .82rem; color: var(--terracotta); margin-top: 3px; }
+    .cc-atc {
+      width: 100%; padding: 10px; background: var(--charcoal);
+      border: none; color: white; font-family: 'Jost', sans-serif;
+      font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+      cursor: pointer; transition: background .2s;
+    }
+    .cc-atc:hover { background: var(--terracotta); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #221e1b; padding: 60px 50px 30px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 50px;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif; font-weight: 300;
+      font-size: 1.8rem; color: var(--cream); margin-bottom: 1rem;
+    }
+    .footer-logo em { font-style: italic; color: var(--rose); }
+    .footer-tagline { font-size: .82rem; color: #6b5f5a; line-height: 1.8; max-width: 220px; }
+    .footer-col h4 {
+      font-size: .63rem; letter-spacing: .3em; text-transform: uppercase;
+      color: var(--warm-grey); margin-bottom: 1.2rem;
+    }
+    .footer-col a {
+      display: block; text-decoration: none; font-size: .8rem;
+      color: #6b5f5a; margin-bottom: .6rem; transition: color .2s;
+    }
+    .footer-col a:hover { color: var(--rose); }
+    .footer-bottom {
+      border-top: 1px solid rgba(155,143,138,.1); padding-top: 22px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom p { font-size: .68rem; color: #4a4040; }
+    .socials { display: flex; gap: 10px; }
+    .soc {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(155,143,138,.08);
+      display: flex; align-items: center; justify-content: center;
+      color: #6b5f5a; font-size: .72rem; text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .soc:hover { background: var(--terracotta); color: white; }
+
+    @media (max-width: 960px) {
+      .product-main { grid-template-columns: 1fr; }
+      .gallery { position: static; padding: 0 24px 30px; }
+      .product-info { padding: 0 24px 40px; }
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .breadcrumb { padding: 14px 24px; }
+      .benefits-strip { grid-template-columns: 1fr 1fr; padding: 40px 24px; }
+      .how-section { grid-template-columns: 1fr; padding: 50px 24px; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .complete-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .sticky-bar { padding: 14px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ANNOUNCE -->
+<div class="announce">✦ Free shipping on orders over $75 · Free returns within 30 days ✦</div>
+
+<!-- NAV -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#">Nursing Bras</a></li>
+    <li><a href="#">Leggings</a></li>
+    <li><a href="#">Shorts</a></li>
+    <li><a href="#">New Arrivals</a></li>
+  </ul>
+  <a href="#" class="nav-logo">Bare <em>&</em> Bloom</a>
+  <div class="nav-right">
+    <button>Search</button>
+    <button>Account</button>
+    <button class="cart-pill">Bag (0)</button>
+  </div>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="#">Home</a><span>/</span>
+  <a href="#">Nursing Bras</a><span>/</span>
+  The Tender Bra
+</div>
+
+<!-- PRODUCT MAIN -->
+<div class="product-main">
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="thumbs">
+      <div class="thumb active"><div class="thumb-bg t1"></div></div>
+      <div class="thumb"><div class="thumb-bg t2"></div></div>
+      <div class="thumb"><div class="thumb-bg t3"></div></div>
+      <div class="thumb"><div class="thumb-bg t4"></div></div>
+      <div class="thumb"><div class="thumb-bg t5"></div></div>
+    </div>
+    <div class="main-img-wrap">
+      <div class="main-img">
+        <div class="main-img-badge">Best Seller</div>
+        <div class="main-img-tag">✦ 247 five-star reviews</div>
+        <div class="zoom-hint">Hover to zoom</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT INFO -->
+  <div class="product-info">
+
+    <!-- Social proof -->
+    <div class="social-proof">
+      <span class="sp-stars">★★★★★</span>
+      <span class="sp-text"><strong>4.9</strong> from 247 reviews</span>
+      <div class="sp-divider"></div>
+      <span class="sp-badge">🏆 #1 Nursing Bra</span>
+    </div>
+
+    <p class="product-category-label">Nursing Bra</p>
+    <h1 class="product-title">The Tender <em>Bra</em></h1>
+    <p class="product-subtitle">Seamlessly supportive, impossibly soft. Designed for day, night and the quiet moments in between.</p>
+
+    <!-- Price -->
+    <div class="price-row">
+      <span class="price-main">$58.00</span>
+      <span class="price-was">$72.00</span>
+      <span class="price-save">Save 19%</span>
+    </div>
+    <p class="installment">or <strong>4 × $14.50</strong> with Afterpay · No interest</p>
+
+    <div class="divider"></div>
+
+    <!-- Colour -->
+    <p class="option-label">Colour <span>— Blush Rose</span></p>
+    <div class="colour-swatches">
+      <div class="colour-swatch active" style="background:#D9A89A;" title="Blush Rose"></div>
+      <div class="colour-swatch" style="background:#F2E4DC;" title="Ivory"></div>
+      <div class="colour-swatch" style="background:#2E2724;" title="Charcoal"></div>
+      <div class="colour-swatch" style="background:#8FA88A;" title="Sage"></div>
+      <div class="colour-swatch" style="background:#c4a882;" title="Sand"></div>
+    </div>
+
+    <!-- Size -->
+    <p class="option-label">Size <span>— 32D</span></p>
+    <div class="size-row">
+      <button class="size-btn">XS</button>
+      <button class="size-btn active">S</button>
+      <button class="size-btn">M</button>
+      <button class="size-btn">L</button>
+      <button class="size-btn">XL</button>
+      <button class="size-btn sold-out">XXL</button>
+    </div>
+    <span class="size-guide-link">Find my size →</span>
+
+    <!-- CTA -->
+    <div class="cta-stack">
+      <button class="btn-atc">
+        <span>✦</span> Add to Bag
+      </button>
+      <button class="btn-buy">Buy Now</button>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="trust-row">
+      <div class="trust-badge">
+        <span class="trust-icon">↩</span>
+        <span class="trust-text"><strong>30-Day</strong>Free Returns</span>
+      </div>
+      <div class="trust-badge">
+        <span class="trust-icon">🚚</span>
+        <span class="trust-text"><strong>Free Ship</strong>Orders $75+</span>
+      </div>
+      <div class="trust-badge">
+        <span class="trust-icon">🌿</span>
+        <span class="trust-text"><strong>Ethically</strong>Sourced</span>
+      </div>
+      <div class="trust-badge">
+        <span class="trust-icon">💬</span>
+        <span class="trust-text"><strong>Real</strong>Support Team</span>
+      </div>
+    </div>
+
+    <!-- Accordion -->
+    <div class="accordion">
+      <div class="acc-item">
+        <button class="acc-header open" onclick="toggleAcc(this)">
+          Details & Features
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body open">
+          <ul>
+            <li>Single-hand drop-cup clasp for effortless nursing access</li>
+            <li>88% Micromodal, 12% Elastane — buttery soft against sensitive skin</li>
+            <li>Removable, contoured pads for natural shape support</li>
+            <li>Wide underbust band for all-day comfort and lift</li>
+            <li>Adjustable, non-slip straps with J-hook option</li>
+            <li>Wire-free design — wear from birth through weaning</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Fabric & Care
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          <p style="margin-bottom:.8rem;">Made from MicroModal fabric — 50% softer than cotton and sustainably sourced from European beech trees. Gentle on postpartum and nursing skin.</p>
+          <ul>
+            <li>Machine wash cold, delicate cycle</li>
+            <li>Lay flat to dry — do not tumble dry</li>
+            <li>Do not bleach or iron pads</li>
+            <li>Hand wash recommended for longevity</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Sizing & Fit
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          <p style="margin-bottom:.8rem;">The Tender Bra runs true to your pre-pregnancy bra size. If you are between sizes or in your third trimester, we recommend sizing up. The band has 3 hook-and-eye positions for a growing and changing body.</p>
+          <ul>
+            <li>XS fits 30A–32B</li>
+            <li>S fits 32C–34B</li>
+            <li>M fits 34C–36B</li>
+            <li>L fits 36C–38B</li>
+            <li>XL fits 38C–40B</li>
+          </ul>
+        </div>
+      </div>
+      <div class="acc-item">
+        <button class="acc-header" onclick="toggleAcc(this)">
+          Shipping & Returns
+          <span class="acc-icon">+</span>
+        </button>
+        <div class="acc-body">
+          <p style="margin-bottom:.8rem;">Free standard shipping on orders over $75. Express and overnight options available at checkout.</p>
+          <ul>
+            <li>Standard: 5–7 business days</li>
+            <li>Express: 2–3 business days</li>
+            <li>Free returns within 30 days — no questions asked</li>
+            <li>Final sale items are not eligible for return</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- STICKY ATC BAR -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-product">
+    <div class="sticky-thumb"></div>
+    <div>
+      <p class="sticky-name">The Tender Bra</p>
+      <p class="sticky-price">$58.00 · Blush Rose / S</p>
+    </div>
+  </div>
+  <button class="sticky-atc">Add to Bag</button>
+</div>
+
+<!-- BENEFITS STRIP -->
+<div class="benefits-strip">
+  <div class="benefit-item">
+    <div class="benefit-icon">🤱</div>
+    <p class="benefit-title">One-Hand Drop Cup</p>
+    <p class="benefit-desc">Nurse discreetly and easily, even when baby is in your arms</p>
+  </div>
+  <div class="benefit-item">
+    <div class="benefit-icon">🌙</div>
+    <p class="benefit-title">Sleep-Worthy Soft</p>
+    <p class="benefit-desc">MicroModal fabric so gentle you can wear it through the night</p>
+  </div>
+  <div class="benefit-item">
+    <div class="benefit-icon">🌿</div>
+    <p class="benefit-title">Sustainably Sourced</p>
+    <p class="benefit-desc">Certified sustainable beech wood fibres, kind to skin and planet</p>
+  </div>
+  <div class="benefit-item">
+    <div class="benefit-icon">⏳</div>
+    <p class="benefit-title">Before, During, After</p>
+    <p class="benefit-desc">Designed to be worn from third trimester through weaning</p>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-visual">
+    <p class="how-visual-text">"The bra I wish<br>I'd had with my first."</p>
+  </div>
+  <div class="how-content">
+    <h2>Designed for how<br>mothers <em>actually live</em></h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <span class="step-num">01</span>
+        <div class="step-content">
+          <h4>Wear from bump to beyond</h4>
+          <p>The adjustable band and drop cups mean this bra grows with you — through your third trimester, postpartum, nursing, and beyond.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <span class="step-num">02</span>
+        <div class="step-content">
+          <h4>One-hand access, always</h4>
+          <p>Our drop-cup clasp was designed to be operated with one hand — because your other one is always holding someone precious.</p>
+        </div>
+      </div>
+      <div class="how-step">
+        <span class="step-num">03</span>
+        <div class="step-content">
+          <h4>Support without the wire</h4>
+          <p>A wide-band, wire-free construction that gives genuine lift and shape, without the pressure that can block milk ducts.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="reviews-header">
+    <div class="reviews-summary">
+      <span class="big-score">4.9</span>
+      <div class="score-detail">
+        <span class="score-stars">★★★★★</span>
+        <span class="score-count">Based on 247 reviews</span>
+      </div>
+      <div class="review-bars">
+        <div class="bar-row">
+          <span class="bar-label">5</span>
+          <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+          <span class="bar-pct">92%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">4</span>
+          <div class="bar-track"><div class="bar-fill" style="width:6%"></div></div>
+          <span class="bar-pct">6%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">3</span>
+          <div class="bar-track"><div class="bar-fill" style="width:1%;"></div></div>
+          <span class="bar-pct">1%</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">2</span>
+          <div class="bar-track"><div class="bar-fill" style="width:1%"></div></div>
+          <span class="bar-pct">1%</span>
+        </div>
+      </div>
+    </div>
+    <button class="btn-atc" style="width:auto; padding: 12px 28px; font-size:.68rem;">Write a Review</button>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="rc-top">
+        <span class="rc-stars">★★★★★</span>
+        <span class="rc-verified">✓ Verified</span>
+      </div>
+      <p class="rc-title">"The bra I've been looking for since my first pregnancy"</p>
+      <p class="rc-body">"Genuinely the first nursing bra I've worn that doesn't make me feel frumpy. The fabric is so soft it feels like nothing is there, but the support is real. I cried a little, honestly."</p>
+      <div class="rc-author">
+        <div class="rc-avatar" style="background: linear-gradient(135deg, #D9A89A, #B5685A);">S</div>
+        <div>
+          <p class="rc-name">Sarah M.</p>
+          <p class="rc-meta">Mum of 2 · Size S · 6 weeks postpartum</p>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="rc-top">
+        <span class="rc-stars">★★★★★</span>
+        <span class="rc-verified">✓ Verified</span>
+      </div>
+      <p class="rc-title">"Wore it day and night for 3 months straight"</p>
+      <p class="rc-body">"The one-hand drop clasp is a game changer at 3am. I didn't realise how much I needed that until I had it. Bought two more colours immediately."</p>
+      <div class="rc-author">
+        <div class="rc-avatar" style="background: linear-gradient(135deg, #8FA88A, #5a7858);">A</div>
+        <div>
+          <p class="rc-name">Amara K.</p>
+          <p class="rc-meta">First-time mama · Size M · 3 months postpartum</p>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="rc-top">
+        <span class="rc-stars">★★★★★</span>
+        <span class="rc-verified">✓ Verified</span>
+      </div>
+      <p class="rc-title">"The quality is unlike anything I've tried"</p>
+      <p class="rc-body">"Third baby, third attempt at finding the right nursing bra. This is it. The fabric hasn't pilled, the clasp still works perfectly after months of daily use. Worth every cent."</p>
+      <div class="rc-author">
+        <div class="rc-avatar" style="background: linear-gradient(135deg, #c8b8c0, #907080);">L</div>
+        <div>
+          <p class="rc-name">Leilani R.</p>
+          <p class="rc-meta">Mum of 3 · Size L · Currently nursing</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLETE THE LOOK -->
+<section class="complete-section">
+  <div style="text-align:center;">
+    <p style="font-size:.65rem; letter-spacing:.4em; text-transform:uppercase; color:var(--terracotta); margin-bottom:.8rem;">Complete the Look</p>
+    <h2 style="font-family:'Cormorant Garamond',serif; font-weight:300; font-size:2.4rem; color:var(--charcoal);">Pairs beautifully <em style="font-style:italic;">with</em></h2>
+  </div>
+  <div class="complete-grid">
+    <div class="complete-card">
+      <div class="cc-img cc1"></div>
+      <div class="cc-info">
+        <p class="cc-cat">Maternity Leggings</p>
+        <p class="cc-name">The Bloom Legging</p>
+        <p class="cc-price">$68.00</p>
+      </div>
+      <button class="cc-atc">Quick Add</button>
+    </div>
+    <div class="complete-card">
+      <div class="cc-img cc2"></div>
+      <div class="cc-info">
+        <p class="cc-cat">Maternity Shorts</p>
+        <p class="cc-name">The Bare Short</p>
+        <p class="cc-price">$52.00</p>
+      </div>
+      <button class="cc-atc">Quick Add</button>
+    </div>
+    <div class="complete-card">
+      <div class="cc-img cc3"></div>
+      <div class="cc-info">
+        <p class="cc-cat">Nursing Bra</p>
+        <p class="cc-name">The Night Bra</p>
+        <p class="cc-price">$48.00</p>
+      </div>
+      <button class="cc-atc">Quick Add</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Bare <em>&</em> Bloom</div>
+      <p class="footer-tagline">Clothing made for the tenderness of becoming a mother.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="#">Nursing Bras</a>
+      <a href="#">Maternity Leggings</a>
+      <a href="#">Maternity Shorts</a>
+      <a href="#">Postpartum</a>
+      <a href="#">New Arrivals</a>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="#">Size Guide</a>
+      <a href="#">Shipping</a>
+      <a href="#">Returns</a>
+      <a href="#">FAQ</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>About</h4>
+      <a href="#">Our Story</a>
+      <a href="#">Sustainability</a>
+      <a href="#">Press</a>
+      <a href="#">Affiliates</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Bare & Bloom. All rights reserved.</p>
+    <div class="socials">
+      <a class="soc" href="#">ig</a>
+      <a class="soc" href="#">tt</a>
+      <a class="soc" href="#">pi</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Accordion
+  function toggleAcc(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.acc-header').forEach(b => b.classList.remove('open'));
+    if (!isOpen) {
+      body.classList.add('open');
+      btn.classList.add('open');
+    }
+  }
+
+  // Sticky bar on scroll
+  const stickyBar = document.getElementById('stickyBar');
+  const cta = document.querySelector('.cta-stack');
+  const observer = new IntersectionObserver(([e]) => {
+    stickyBar.classList.toggle('visible', !e.isIntersecting);
+  }, { threshold: 0 });
+  if (cta) observer.observe(cta);
+
+  // Thumb clicks
+  document.querySelectorAll('.thumb').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.thumb').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+    });
+  });
+
+  // Size buttons
+  document.querySelectorAll('.size-btn:not(.sold-out)').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.size-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+
+  // Colour swatches
+  document.querySelectorAll('.colour-swatch').forEach(s => {
+    s.addEventListener('click', () => {
+      document.querySelectorAll('.colour-swatch').forEach(x => x.classList.remove('active'));
+      s.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
